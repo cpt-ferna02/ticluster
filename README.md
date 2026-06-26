@@ -10,6 +10,9 @@ probable threat actor campaigns — without relying on vendor labels.
 > threat actor?"_ — that's the question TICluster answers.
 
 ---
+## Architecture
+
+![TICluster Architecture](docs/screenshots/architecture.png)
 
 ## Screenshots
 
