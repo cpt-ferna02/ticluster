@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TICluster — Threat Intelligence Attribution</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <span class="logo">⬡ TICluster</span>
+      <span class="tagline">ML-powered threat actor attribution</span>
+    </div>
+    <div class="header-stats" id="header-stats">
+      <div class="stat"><span id="stat-iocs">—</span><label>IOCs</label></div>
+      <div class="stat"><span id="stat-campaigns">—</span><label>Campaigns</label></div>
+      <div class="stat"><span id="stat-high">—</span><label>High Confidence</label></div>
+      <div class="stat"><span id="stat-noise">—</span><label>Noise</label></div>
+    </div>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h2>Campaigns</h2>
+        <input type="text" id="search" placeholder="Filter…" autocomplete="off" />
+      </div>
+      <ul id="campaign-list"></ul>
+    </aside>
+
+    <section id="detail">
+      <div id="detail-empty">
+        <p>← Select a campaign to inspect</p>
+      </div>
+      <div id="detail-content" hidden>
+        <div class="detail-header">
+          <h2 id="detail-name"></h2>
+          <div class="detail-meta">
+            <span class="badge" id="detail-level"></span>
+            <span id="detail-confidence"></span>
+            <span id="detail-ioc-count"></span>
+            <span id="detail-country"></span>
+            <span id="detail-asn"></span>
+          </div>
+          <p id="detail-basis"></p>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="iocs">IOCs</button>
+          <button class="tab" data-tab="sigma">Sigma Rule</button>
+        </div>
+
+        <div id="tab-iocs" class="tab-content">
+          <table id="ioc-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Family</th>
+                <th>Country</th>
+                <th>ASN</th>
+                <th>Sources</th>
+              </tr>
+            </thead>
+            <tbody id="ioc-tbody"></tbody>
+          </table>
+        </div>
+
+        <div id="tab-sigma" class="tab-content" hidden>
+          <div class="sigma-toolbar">
+            <button id="copy-sigma">Copy YAML</button>
+            <span id="copy-confirm" hidden>✓ Copied</span>
+          </div>
+          <pre id="sigma-pre"><code id="sigma-code"></code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
