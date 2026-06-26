@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <style>
+      /* ── base ── */
+      .bg       { fill: #0d1117; }
+      .card     { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+      .card-hi  { fill: #161b22; stroke: #58a6ff; stroke-width: 1; }
+      .label    { fill: #e6edf3; font-size: 12px; font-weight: 600; }
+      .sub      { fill: #8b949e; font-size: 10px; }
+      .layer    { fill: #8b949e; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; }
+      .badge    { font-size: 9px; font-weight: 700; }
+
+      /* feed source pills */
+      .pill-blue  { fill: #0d2137; stroke: #1f6feb; stroke-width: 1; }
+      .pill-blue .label { fill: #58a6ff; }
+      .pill-teal  { fill: #0d2b2b; stroke: #3fb950; stroke-width: 1; }
+      .pill-teal .label { fill: #3fb950; }
+
+      /* layer backgrounds */
+      .l1bg { fill: #0d2137; stroke: #1f6feb; stroke-width: 0.5; stroke-dasharray: 4 3; rx: 10; }
+      .l2bg { fill: #1a1200; stroke: #d29922; stroke-width: 0.5; stroke-dasharray: 4 3; }
+      .l3bg { fill: #200d33; stroke: #8957e5; stroke-width: 0.5; stroke-dasharray: 4 3; }
+      .l4bg { fill: #0d1f0d; stroke: #3fb950; stroke-width: 0.5; stroke-dasharray: 4 3; }
+      .l5bg { fill: #2b0d0d; stroke: #f85149; stroke-width: 0.5; stroke-dasharray: 4 3; }
+
+      /* connector lines */
+      .conn { fill: none; stroke: #30363d; stroke-width: 1.5; }
+      .conn-blue   { fill: none; stroke: #1f6feb; stroke-width: 1.5; }
+      .conn-yellow { fill: none; stroke: #d29922; stroke-width: 1.5; }
+      .conn-purple { fill: none; stroke: #8957e5; stroke-width: 1.5; }
+      .conn-green  { fill: none; stroke: #3fb950; stroke-width: 1.5; }
+
+      /* ── animated data dots ── */
+      .dot {
+        r: 4;
+        fill: #58a6ff;
+        opacity: 0;
+        animation: travel 4s ease-in-out infinite;
+      }
+      .dot2  { animation-delay: 0.6s; }
+      .dot3  { animation-delay: 1.2s; }
+      .dot4  { animation-delay: 1.8s; }
+      .dot5  { animation-delay: 2.4s; }
+      .dot6  { animation-delay: 3.0s; }
+
+      .dot-y  { fill: #d29922; animation: travel-down 3.5s ease-in-out infinite; }
+      .dot-p  { fill: #8957e5; animation: travel-down 3.5s ease-in-out infinite; }
+      .dot-g  { fill: #3fb950; animation: travel-out 3s ease-in-out infinite; }
+      .dot-g2 { fill: #3fb950; animation: travel-out 3s ease-in-out infinite; animation-delay: 1s; }
+      .dot-g3 { fill: #3fb950; animation: travel-out 3s ease-in-out infinite; animation-delay: 2s; }
+      .dot-g4 { fill: #3fb950; animation: travel-out 3s ease-in-out infinite; animation-delay: 1.5s; }
+
+      /* dots flow from feeds → normalizer */
+      @keyframes travel {
+        0%   { opacity: 0; transform: translateY(0px);  }
+        10%  { opacity: 1; }
+        80%  { opacity: 1; transform: translateY(52px); }
+        100% { opacity: 0; transform: translateY(52px); }
+      }
+      /* dots flow layer to layer downward */
+      @keyframes travel-down {
+        0%   { opacity: 0; transform: translateY(0px);  }
+        15%  { opacity: 1; }
+        75%  { opacity: 1; transform: translateY(48px); }
+        100% { opacity: 0; transform: translateY(48px); }
+      }
+      /* dots spread to outputs */
+      @keyframes travel-out {
+        0%   { opacity: 0; transform: translateX(0px);  }
+        15%  { opacity: 1; }
+        75%  { opacity: 1; transform: translateX(80px); }
+        100% { opacity: 0; transform: translateX(80px); }
+      }
+
+      /* pulse ring on clustering box */
+      .pulse-ring {
+        fill: none; stroke: #8957e5; stroke-width: 1.5; opacity: 0;
+        animation: pulse 3s ease-out infinite;
+      }
+      .pulse-ring2 { animation-delay: 1s; }
+      .pulse-ring3 { animation-delay: 2s; }
+      @keyframes pulse {
+        0%   { opacity: 0; r: 8; }
+        20%  { opacity: 0.7; }
+        100% { opacity: 0; r: 22; }
+      }
+
+      /* score bar fill animation */
+      .bar-fill { animation: barfill 2.5s ease-out infinite; transform-origin: left; }
+      @keyframes barfill {
+        0%   { transform: scaleX(0); opacity: 0.4; }
+        60%  { transform: scaleX(1); opacity: 1; }
+        100% { transform: scaleX(1); opacity: 0.7; }
+      }
+
+      /* badge blink */
+      .blink { animation: blink 2s ease-in-out infinite; }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.5; }
+      }
+    </style>
+
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L8 5L1 8" fill="none" stroke="#30363d" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+    <marker id="ah-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L8 5L1 8" fill="none" stroke="#1f6feb" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+    <marker id="ah-y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L8 5L1 8" fill="none" stroke="#d29922" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+    <marker id="ah-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L8 5L1 8" fill="none" stroke="#8957e5" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+    <marker id="ah-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 2L8 5L1 8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════ BACKGROUND -->
+  <rect width="900" height="620" rx="12" class="bg"/>
+  <rect x="8" y="8" width="884" height="604" rx="10" fill="none" stroke="#21262d" stroke-width="1"/>
+
+  <!-- title -->
+  <text x="450" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#e6edf3">TICluster — Threat Intelligence Attribution Engine</text>
+  <text x="450" y="50" text-anchor="middle" font-size="10" fill="#8b949e">Autonomous pipeline · 6-hour schedule · No vendor labels required</text>
+
+  <!-- ══════════════════════════════════════════════ LAYER 1 — FEEDS -->
+  <rect x="20" y="62" width="860" height="84" rx="8" class="l1bg"/>
+  <text x="36" y="78" class="layer" fill="#58a6ff">LAYER 1 — INGESTION</text>
+
+  <!-- feed pills -->
+  <!-- abuse.ch -->
+  <rect x="36"  y="84" width="120" height="50" rx="6" class="pill-blue"/>
+  <text x="96"  y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#58a6ff">abuse.ch</text>
+  <text x="96"  y="120" text-anchor="middle" class="sub">MalwareBazaar · URLhaus</text>
+
+  <!-- OTX -->
+  <rect x="170" y="84" width="120" height="50" rx="6" class="pill-blue"/>
+  <text x="230" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#58a6ff">AlienVault OTX</text>
+  <text x="230" y="120" text-anchor="middle" class="sub">Open threat exchange</text>
+
+  <!-- Feodo -->
+  <rect x="304" y="84" width="120" height="50" rx="6" class="pill-blue"/>
+  <text x="364" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#58a6ff">Feodo Tracker</text>
+  <text x="364" y="120" text-anchor="middle" class="sub">C2 botnet IPs</text>
+
+  <!-- CISA KEV -->
+  <rect x="438" y="84" width="120" height="50" rx="6" class="pill-teal"/>
+  <text x="498" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#3fb950">CISA KEV</text>
+  <text x="498" y="120" text-anchor="middle" class="sub">Exploited CVEs</text>
+
+  <!-- ET Rules -->
+  <rect x="572" y="84" width="120" height="50" rx="6" class="pill-blue"/>
+  <text x="632" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#58a6ff">Emerging Threats</text>
+  <text x="632" y="120" text-anchor="middle" class="sub">ET open rules</text>
+
+  <!-- NVD -->
+  <rect x="706" y="84" width="120" height="50" rx="6" class="pill-teal"/>
+  <text x="766" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#3fb950">NVD / CVE API</text>
+  <text x="766" y="120" text-anchor="middle" class="sub">No key required</text>
+
+  <!-- ── animated dots dropping from feeds ── -->
+  <circle class="dot"      cx="96"  cy="130"/>
+  <circle class="dot dot2" cx="230" cy="130"/>
+  <circle class="dot dot3" cx="364" cy="130"/>
+  <circle class="dot dot4" cx="498" cy="130" style="fill:#3fb950"/>
+  <circle class="dot dot5" cx="632" cy="130"/>
+  <circle class="dot dot6" cx="766" cy="130" style="fill:#3fb950"/>
+
+  <!-- connectors feed → normalizer -->
+  <line x1="96"  y1="134" x2="420" y2="168" class="conn-blue" marker-end="url(#ah-b)"/>
+  <line x1="230" y1="134" x2="428" y2="168" class="conn-blue" marker-end="url(#ah-b)"/>
+  <line x1="364" y1="134" x2="436" y2="168" class="conn-blue" marker-end="url(#ah-b)"/>
+  <line x1="498" y1="134" x2="460" y2="168" class="conn-green" marker-end="url(#ah-g)"/>
+  <line x1="632" y1="134" x2="468" y2="168" class="conn-blue" marker-end="url(#ah-b)"/>
+  <line x1="766" y1="134" x2="476" y2="168" class="conn-green" marker-end="url(#ah-g)"/>
+
+  <!-- ══════════════════════════════════════════════ LAYER 2 — NORMALIZER -->
+  <rect x="20" y="172" width="860" height="60" rx="8" class="l2bg"/>
+  <text x="36" y="188" class="layer" fill="#d29922">LAYER 2 — NORMALIZATION &amp; ENRICHMENT</text>
+
+  <rect x="200" y="193" width="500" height="32" rx="6" fill="#2b1d00" stroke="#d29922" stroke-width="1"/>
+  <text x="450" y="207" text-anchor="middle" font-size="11" font-weight="700" fill="#d29922">Normalizer &amp; Enricher</text>
+  <text x="450" y="219" text-anchor="middle" class="sub">ASN lookup (ipwhois) · GeoIP (geoip2) · URI pattern parse · malware family tag · dedup · SQLite cache</text>
+
+  <!-- animated dot down to clustering -->
+  <circle class="dot-y" cx="450" cy="225" style="animation-delay:0.3s"/>
+  <circle class="dot-y" cx="450" cy="225" style="animation-delay:1.3s"/>
+
+  <line x1="450" y1="228" x2="450" y2="248" class="conn-yellow" marker-end="url(#ah-y)"/>
+
+  <!-- ══════════════════════════════════════════════ LAYER 3 — CLUSTERING -->
+  <rect x="20" y="252" width="860" height="90" rx="8" class="l3bg"/>
+  <text x="36" y="268" class="layer" fill="#8957e5">LAYER 3 — CLUSTERING ENGINE  ·  THE CORE DIFFERENTIATOR</text>
+
+  <!-- three sub-boxes -->
+  <rect x="36"  y="274" width="252" height="60" rx="6" fill="#1e0d33" stroke="#8957e5" stroke-width="1"/>
+  <text x="162" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#d2a8ff">1. Feature vectorization</text>
+  <text x="162" y="306" text-anchor="middle" class="sub">TF-IDF on ASN + TTP + URI</text>
+  <text x="162" y="318" text-anchor="middle" class="sub">+ port + malware family</text>
+
+  <rect x="324" y="274" width="252" height="60" rx="6" fill="#1e0d33" stroke="#8957e5" stroke-width="1.5"/>
+  <text x="450" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#d2a8ff">2. Cosine similarity matrix</text>
+  <text x="450" y="306" text-anchor="middle" class="sub">sklearn cosine_similarity()</text>
+  <text x="450" y="318" text-anchor="middle" class="sub">1 − matrix → distance space</text>
+  <!-- pulse rings on this box -->
+  <circle class="pulse-ring"  cx="450" cy="304" r="8"/>
+  <circle class="pulse-ring pulse-ring2" cx="450" cy="304" r="8"/>
+  <circle class="pulse-ring pulse-ring3" cx="450" cy="304" r="8"/>
+
+  <rect x="612" y="274" width="252" height="60" rx="6" fill="#1e0d33" stroke="#8957e5" stroke-width="1"/>
+  <text x="738" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#d2a8ff">3. DBSCAN clustering</text>
+  <text x="738" y="306" text-anchor="middle" class="sub">ε=0.35 · min_samples=2</text>
+  <text x="738" y="318" text-anchor="middle" class="sub">No vendor labels required</text>
+
+  <!-- arrows between sub-boxes -->
+  <line x1="290" y1="304" x2="322" y2="304" class="conn-purple" marker-end="url(#ah-p)"/>
+  <line x1="578" y1="304" x2="610" y2="304" class="conn-purple" marker-end="url(#ah-p)"/>
+
+  <!-- animated dot down to scoring -->
+  <circle class="dot-p" cx="450" cy="342" style="animation-delay:0.8s"/>
+  <circle class="dot-p" cx="450" cy="342" style="animation-delay:2.1s"/>
+  <line x1="450" y1="344" x2="450" y2="362" class="conn-purple" marker-end="url(#ah-p)"/>
+
+  <!-- ══════════════════════════════════════════════ LAYER 4 — SCORING + SIGMA -->
+  <rect x="20" y="366" width="860" height="80" rx="8" class="l4bg"/>
+  <text x="36" y="382" class="layer" fill="#3fb950">LAYER 4 — SCORING &amp; RULE GENERATION</text>
+
+  <!-- confidence scorer box -->
+  <rect x="36"  y="388" width="390" height="50" rx="6" fill="#0d1f0d" stroke="#3fb950" stroke-width="1"/>
+  <text x="231" y="406" text-anchor="middle" font-size="11" font-weight="700" fill="#3fb950">Confidence Scorer  (0 – 100)</text>
+  <!-- animated score bar -->
+  <rect x="52"  y="414" width="340" height="7" rx="3" fill="#1a2f1a"/>
+  <rect x="52"  y="414" width="289" height="7" rx="3" fill="#238636" class="bar-fill"/>
+  <text x="398" y="422" text-anchor="end" font-size="9" fill="#8b949e">85 / 100</text>
+  <text x="52"  y="432" font-size="9" fill="#8b949e">ASN +35 · URI pattern +25 · TTP match +20 · GeoIP +10 · beacon Δ +10</text>
+
+  <!-- sigma generator box -->
+  <rect x="470" y="388" width="390" height="50" rx="6" fill="#0d1f0d" stroke="#3fb950" stroke-width="1"/>
+  <text x="665" y="403" text-anchor="middle" font-size="11" font-weight="700" fill="#3fb950">Sigma Rule Generator</text>
+  <text x="665" y="416" text-anchor="middle" class="sub">Per-campaign YAML · ATT&amp;CK tagged · Splunk / Wazuh / Elastic ready</text>
+  <text x="665" y="430" text-anchor="middle" font-size="9" fill="#3fb950">detection: dst_ip|cidr → condition: selection → level: high</text>
+
+  <!-- animated dots spreading to outputs -->
+  <circle class="dot-g"  cx="231" cy="440"/>
+  <circle class="dot-g2" cx="450" cy="440" style="fill:#8957e5"/>
+  <circle class="dot-g3" cx="665" cy="440"/>
+
+  <line x1="231" y1="440" x2="180" y2="462" class="conn-green" marker-end="url(#ah-g)"/>
+  <line x1="340" y1="440" x2="340" y2="462" class="conn-green" marker-end="url(#ah-g)"/>
+  <line x1="450" y1="440" x2="500" y2="462" class="conn-green" marker-end="url(#ah-g)"/>
+  <line x1="665" y1="440" x2="665" y2="462" class="conn-green" marker-end="url(#ah-g)"/>
+
+  <!-- ══════════════════════════════════════════════ LAYER 5 — OUTPUT -->
+  <rect x="20" y="466" width="860" height="80" rx="8" class="l5bg"/>
+  <text x="36" y="482" class="layer" fill="#f85149">LAYER 5 — OUTPUT</text>
+
+  <!-- Flask dashboard -->
+  <rect x="36"  y="488" width="180" height="50" rx="6" fill="#2b0d0d" stroke="#f85149" stroke-width="1"/>
+  <text x="126" y="508" text-anchor="middle" font-size="11" font-weight="700" fill="#f85149">Flask dashboard</text>
+  <text x="126" y="520" text-anchor="middle" class="sub">Live public URL</text>
+  <text x="126" y="532" text-anchor="middle" class="sub">Railway · always on</text>
+
+  <!-- SQLite -->
+  <rect x="232" y="488" width="180" height="50" rx="6" fill="#2b0d0d" stroke="#f85149" stroke-width="1"/>
+  <text x="322" y="508" text-anchor="middle" font-size="11" font-weight="700" fill="#f85149">SQLite store</text>
+  <text x="322" y="520" text-anchor="middle" class="sub">IOCs · clusters · history</text>
+  <text x="322" y="532" text-anchor="middle" class="sub">30-day ASN TTL cache</text>
+
+  <!-- Slack -->
+  <rect x="428" y="488" width="180" height="50" rx="6" fill="#2b0d0d" stroke="#f85149" stroke-width="1"/>
+  <text x="518" y="508" text-anchor="middle" font-size="11" font-weight="700" fill="#f85149">Slack alerting</text>
+  <text x="518" y="520" text-anchor="middle" class="sub">New cluster webhook</text>
+  <text x="518" y="532" text-anchor="middle" class="sub">Confidence threshold gate</text>
+
+  <!-- Sigma export -->
+  <rect x="624" y="488" width="240" height="50" rx="6" fill="#2b0d0d" stroke="#f85149" stroke-width="1"/>
+  <text x="744" y="508" text-anchor="middle" font-size="11" font-weight="700" fill="#f85149">Sigma YAML export</text>
+  <text x="744" y="520" text-anchor="middle" class="sub">Per-campaign · ATT&amp;CK mapped</text>
+  <text x="744" y="532" text-anchor="middle" class="sub">Copy button in dashboard</text>
+
+  <!-- ══════════════════════════════════════════════ FOOTER LEGEND -->
+  <line x1="36"  y1="572" x2="66"  y2="572" class="conn-blue"   stroke-width="2"/>
+  <text x="72"  y="576" class="sub">Free feed (no key)</text>
+  <line x1="180" y1="572" x2="210" y2="572" class="conn-green"  stroke-width="2"/>
+  <text x="216" y="576" class="sub">CISA / NVD feed</text>
+  <line x1="316" y1="572" x2="346" y2="572" class="conn-yellow" stroke-width="2"/>
+  <text x="352" y="576" class="sub">Normalization flow</text>
+  <line x1="452" y1="572" x2="482" y2="572" class="conn-purple" stroke-width="2"/>
+  <text x="488" y="576" class="sub">Clustering pipeline</text>
+  <circle cx="624" cy="572" r="4" fill="#8957e5" class="pulse-ring" style="animation:pulse 1.5s ease-out infinite"/>
+  <text x="636" y="576" class="sub">Cosine similarity pulse</text>
+
+  <text x="450" y="600" text-anchor="middle" font-size="9" fill="#484f58">github.com/cpt-ferna02/ticluster · Python 3.10+ · Flask · scikit-learn · MITRE ATT&amp;CK v14</text>
+</svg>
